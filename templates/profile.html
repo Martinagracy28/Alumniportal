@@ -1,0 +1,26 @@
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<body>
+    
+        
+        {% if alumini %}
+    	Name:<h3>hello,{{alumini.name}}</h3><br>
+        College name:<h3>{{alumini.collegename}}</h3><br>
+        Department:<h3>{{alumini.department}}</h3><br>
+        Year Of Passing:<h3>{{alumini.yearofpassing}}</h3><br>
+        Company Name:<h3>{{alumini.companyname}}</h3><br>
+        Current Position:<h3>{{alumini.currentposition}}</h3><br>
+        Area Of Domain:<h3>{{alumini.areaofdomain}}</h3><br>
+        Email Id:<h3>{{alumini.email}}</h3><br> 
+        Contact Number:<h3>{{alumini.contactnumber}}</h3><br> 
+        
+        <p><a href="{% url 'edit' alumini.id %}">Edit Profile</a></p>
+        {% else %}
+        <p><a href="{% url 'newprofile' user.id %}">Create New Profile</a></p>
+       {% endif %}
+       
+      
+</body>
+

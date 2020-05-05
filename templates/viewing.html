@@ -1,0 +1,18 @@
+<table border="1">
+<tr><th>Post Title</th><th>Posts</th><th>Description</th><th>Url</th><th>DatePosted</th></tr>
+<tbody>
+{% for p in aluminipost %}
+<tr>
+	<td>{{p.title}}</td>
+	<td><img src="{{p.image.url}}" alt="image"></td>
+	<td>{{p.description}}</td>
+	<td><a href="{{p.url}}">{{p.url}}</a></td>
+	<td>{{p.dateposted}}</td>
+	<td><a href="{% url 'update' p.id %}">Update</a></td>
+    <td><a href="{% url 'delete' p.id %}">Delete</a></td>
+    <td><a href="{% url 'view' p.id %}">View</a></td>
+
+</tr><br>
+{% endfor %}
+</tbody>
+	</table>

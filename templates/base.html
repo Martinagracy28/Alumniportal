@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+<head>
+    
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>Alumini Web Portal</title>
+    <style>
+       li{border:1px solid blue;width:200px;text-align:center;background-color:pink;color:white;height: 40px;padding-top: 5px;box-sizing: border-box;}
+       li:hover{border:1px solid blue;width:200px;text-align:center;background-color:yellow;color:white;height: 40px;padding-top: 5px;box-sizing: border-box;}
+       
+       ul ul {display: block;}
+       ul li:hover ul {display:block;}
+
+    </style>
+</head>
+<body >
+    
+    <h1>Alumini Portal</h1>
+    <ul type="none">
+        <li><a href="posts">Home</a></li>
+        {% if user.is_authenticated %}
+        hello{{alumini.name}}
+            <li><a href="#">Dashboard</a></li>
+        
+        <ul>
+            <li><a href="{% url 'profile' user.id %}">Profile</a></li>
+            <li><a href="{% url 'viewing' user.id %}">My Post</a></li>
+            <li><a href="{% url 'newpost' user.id %}">Create New Post</a></li>
+        </ul>
+        <li><a href="logout">Logout</a></li>
+        {% else %}
+        <li><a href="login">Login</a></li>
+        <li><a href="register">Register</a></li>
+        {% endif %}
+    </ul>
+   
+   
+    <div>
+        {% for message in messages %}
+        <h1>{{message}}</h1>
+        {% endfor %} 
+    </div>
+
+    
+  
+
+    
+</body>
+
+</html>

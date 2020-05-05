@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>website</title>
+</head>
+<body>
+    <form action="home" method="POST">
+        {% csrf_token %}
+        Name <input type="text" name="name" id="name" ><br><br>
+        Phoneno<input type="text" name="phoneno" id="phoneno"  ><br><br>
+        Address<input type="text" name="address" id="address"  ><br><br>
+        <input type="submit">
+    </form>
+
+
+    
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Phoneno</th>
+        <th>Address</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody>
+        {% for p in person %}
+        <tr>
+            <td>{{p.name}}</td>
+            <td>{{p.phoneno}}</td>
+            <td>{{p.address}}</td>
+            <td><a href="{% url 'update' p.id %}">Update</a></td>
+            <td><a href="{% url 'delete' p.id %}">Delete</a></td>
+            <td><a href="{% url 'view' p.id %}">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    
+
+
+
