@@ -3,6 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .models import Alumini,Posts
 from .forms import PostsForm,AluminiForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -48,7 +49,13 @@ def login(request):
         user=auth.authenticate(username=username,password = password)
         if user is not None:
             auth.login(request,user)
-            return render(request,'base.html')
+            u = user.id
+            alumini = Alumini.objects.filter(user_id = u)
+            if alumini:    
+                return render(request,'base.html')
+            else:
+                print("you still dont have an profile,so create a profile ")
+                return render(request,"logprofile.html")
         else:
             messages.info(request,"invalid credentials")
             return redirect('register')
@@ -71,11 +78,12 @@ def profile(request, pk):
             alumini = Alumini.objects.get(user_id = pk)
             print(alumini)
             return render(request,'profile.html',{'alumini':alumini})
+            return redirect('/')
         else:
             print("note")
             return render(request,'profile.html')
 
-        
+@login_required(login_url='login')        
 def newpost(request,pk):
     alumini = Alumini.objects.get(user_id=pk)
     form = PostsForm(initial={'alumini':alumini})
@@ -95,6 +103,7 @@ def newpost(request,pk):
         return render(request,'newpost.html',{'form':form})         
         
 def viewing(request,pk):
+    
     alumini = Alumini.objects.get(user_id = pk)
     aluminipost = alumini.posts_set.all()
     return render(request,'viewing.html',{'aluminipost':aluminipost})
@@ -151,8 +160,13 @@ def newprofile(request,pk):
             print(form.cleaned_data)
             messages.info(request,"new profile is created")
             return render(request,"base.html")
+            return redirect("/")
         else:
             print("not valid")
             return redirect("/")    
     else:
         return render(request,'newprofile.html',{'form':form})        
+
+def logprofile(request):
+    if request.method == "POST":
+        return render(request,newprofile.html)        

@@ -15,5 +15,6 @@ urlpatterns = [
     path('view/<str:pk>/',views.view, name ='view'),
     path('edit/<str:pk>/',views.edit, name ='edit'),
     path('newprofile/<str:pk>/',views.newprofile, name ='newprofile'),
+    path('logprofile', views.logprofile,name ="logprofile"),
     
 ]

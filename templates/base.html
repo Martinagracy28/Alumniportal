@@ -20,14 +20,15 @@
     <h1>Alumini Portal</h1>
     <ul type="none">
         <li><a href="posts">Home</a></li>
+        <li><a href="{% url 'newpost' user.id %}">Create New Post</a></li>
         {% if user.is_authenticated %}
-        hello{{alumini.name}}
+    
             <li><a href="#">Dashboard</a></li>
         
         <ul>
             <li><a href="{% url 'profile' user.id %}">Profile</a></li>
             <li><a href="{% url 'viewing' user.id %}">My Post</a></li>
-            <li><a href="{% url 'newpost' user.id %}">Create New Post</a></li>
+           
         </ul>
         <li><a href="logout">Logout</a></li>
         {% else %}
