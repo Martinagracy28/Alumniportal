@@ -11,7 +11,8 @@ def base(request):
     if request.method=="POST":
         return render(request,"register.html")
     else:
-        return render(request,"base.html")
+        posts = Posts.objects.all()
+        return render(request,"base.html",{'posts':posts})
 
 
 def register(request):

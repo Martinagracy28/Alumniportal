@@ -19,6 +19,7 @@
     
     <h1>Alumini Portal</h1>
     <ul type="none">
+    	
         <li><a href="posts">Home</a></li>
         <li><a href="{% url 'newpost' user.id %}">Create New Post</a></li>
         {% if user.is_authenticated %}
@@ -44,7 +45,16 @@
         {% endfor %} 
     </div>
 
-    
+    <div> <form>
+        {% for post in posts %}
+        <p>Title of the posts:{{post.title}}</p><br>
+        <p>Image:<br><img src="{{post.image.url}}" alt="image"></p><br>
+        <p>Url Link=<a href="{{post.url}}">{{post.url}}</a></p>
+        <p>Description of the post:{{post.description}}</p><br>
+        <p>Dateposted:{{post.dateposted}}</p><br>
+        <p>Posted by:{{post.alumini.name}}</p>
+        {% endfor %}
+    </form></div>
   
 
     

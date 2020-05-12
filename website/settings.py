@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'forms.apps.FormsConfig',
+
     'alumini.apps.AluminiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
